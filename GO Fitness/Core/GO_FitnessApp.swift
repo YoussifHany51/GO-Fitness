@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct GO_FitnessApp: App {
+    @StateObject private var appRoutes: Router<AppRoutes> = .init()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appRoutes)
         }
     }
 }
