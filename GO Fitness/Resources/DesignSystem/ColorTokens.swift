@@ -8,8 +8,19 @@
 import SwiftUI
 
 enum ColorTokens {
-    static let primaryColor = Color(hex: "#007AFF")
-    static let secondaryColor = Color(hex: "#5977B1")
-    static let tertiaryColor = Color(hex: "#D75600")
-    static let naturalColor = Color(hex: "#F2F2F7")
+    
+    enum Background {
+        static let primary = Color(hex: "#FFFFFF")
+        static let secondary = Color(hex: "#F2F2F7")
+    }
+    
+    enum Text {
+        static let primary = Color(hex: "#000000")
+        static let secondary = Color(hex: "#5977B1")
+        static let tertiary = Color(hex: "#D75600")
+    }
+    
+    enum Brand {
+        static let primary = Color(hex: "#007AFF")
+    }
 }
