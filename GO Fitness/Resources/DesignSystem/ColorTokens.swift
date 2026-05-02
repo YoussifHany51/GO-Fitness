@@ -22,5 +22,7 @@ enum ColorTokens {
     
     enum Brand {
         static let primary = Color(hex: "#007AFF")
+        static let secondary = Color(hex: "#5977B1")
+        static let tertiary = Color(hex: "#0a37b9")
     }
 }
