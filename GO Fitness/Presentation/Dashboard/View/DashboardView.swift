@@ -120,13 +120,14 @@ struct DashboardView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundStyle(Color.gray.opacity(0.2))
-                        VStack {
+                        VStack(spacing: 20) {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Recent Workouts")
                                         .font(.title3)
                                         .fontWeight(.semibold)
                                     Text("Your performance is increasing steadily")
+                                        .fixedSize(horizontal: false, vertical: true)
                                 }
                                 Spacer()
                                 Button {
@@ -138,9 +139,100 @@ struct DashboardView: View {
                                         .fontWeight(.bold)
                                 }
                             }
-                            
+                            .padding()
+
+                            WorkoutCardView(icon: Image(systemName:"figure.run"),
+                                            title: "Morning Interval Run",
+                                            duration: "24",
+                                            calories: "340",
+                                            time: "8:30 AM")
+
+                            WorkoutCardView(icon: Image(systemName:"dumbbell.fill"),
+                                            title: "Full Body Strength",
+                                            duration: "45",
+                                            calories: "210",
+                                            time: "Yesterday")
                         }
                         .padding()
+                    }
+                    GeometryReader { geometry in
+                        VStack(spacing: 0) {
+
+                            Image("mealPic")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(
+                                    width: geometry.size.width,
+                                    height: geometry.size.height * 0.5
+                                )
+                                .overlay(alignment: .topTrailing) {
+                                    Text("Latest Meal")
+                                        .textCase(.uppercase)
+                                        .foregroundStyle(Color.black)
+                                        .font(.callout)
+                                        .fontWeight(.medium)
+                                        .padding()
+                                        .frame(height: 30)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .fill(Color.white)
+                                        )
+                                        .padding()
+                                }
+                                .clipShape(
+                                    UnevenRoundedRectangle(
+                                        topLeadingRadius: 20,
+                                        bottomLeadingRadius: 0,
+                                        bottomTrailingRadius: 0,
+                                        topTrailingRadius: 20
+                                    )
+                                )
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Quinoa Power Bowl")
+                                    .font(.title3)
+                                    .fontWeight(.medium)
+                                Text("High in fiber and lean protein")
+                                    .font(.callout)
+                                    .fontWeight(.light)
+                                HStack {
+                                    VStack {
+                                        Text("KCAL")
+                                            .foregroundStyle(Color.gray)
+                                            .fontWeight(.medium)
+                                            .font(.footnote)
+                                        Text("450")
+                                            .foregroundStyle(ColorTokens.Brand.tertiary)
+                                            .fontWeight(.semibold)
+                                    }
+                                    MealsMacrosDetailsView(title: "PROTEIN", macros: "24")
+                                    MealsMacrosDetailsView(title: "CARBS", macros: "58")
+                                    MealsMacrosDetailsView(title: "FATS", macros: "12")
+                                }
+                                .padding(.vertical)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+
+                            Spacer()
+                        }
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                    }
+                    .frame(height: 300)
+                    .overlay(alignment: .bottomTrailing) {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "plus")
+                                .fontWeight(.bold)
+                                .foregroundStyle(Color.white)
+                                .frame(width: 60, height: 60)
+                                .background(
+                                    Circle()
+                                        .fill(ColorTokens.Brand.primary)
+                                )
+                        }
                     }
                 }
             }
